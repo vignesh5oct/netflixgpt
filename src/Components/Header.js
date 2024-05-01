@@ -11,7 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dipatch = useDispatch();
 
-  const user = useSelector((store) =>store.user);
+  const user = useSelector((store) => store.user);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -23,15 +23,15 @@ const Header = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, email, displayName } = user;
-        dipatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        const { uid, email, displayName, photoURL } = user;
+        dipatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
         navigate("/browse");
       } else {
         dipatch(removeUser());
         navigate("/");
       }
     });
-    return(()=>unsubscribe());
+    return (() => unsubscribe());
   }, [])
   return (
     <div >
