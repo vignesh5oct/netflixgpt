@@ -5,7 +5,7 @@ import { auth } from "../utils/firebase"
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import Header from './Header';
-import { bg, user_avartar } from '../utils/constants';
+import { avartar, bg } from '../utils/constants';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const fullName = useRef(null);
+  const user_avartar = avartar;
 
 
 
