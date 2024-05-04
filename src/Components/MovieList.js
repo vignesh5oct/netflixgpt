@@ -9,7 +9,7 @@ const MovieList = ({ title, movies }) => {
    return (
       <div className="p-6">
          <h1 className="text-white text-3xl m-1">{title}</h1>
-         <div className="flex overflow-x-auto">
+         <div className="flex overflow-x-auto  ">
 
             <div className="flex">
                {/* <MovieCard poster={movies[0].poster_path} /> */}

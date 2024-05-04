@@ -5,7 +5,7 @@ import { auth } from "../utils/firebase"
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import Header from './Header';
-import { avartar, bg } from '../utils/constants';
+import { LOGIN_BG, avartar } from '../utils/constants';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -76,23 +76,23 @@ const Login = () => {
 
   return (
 
-    <div>
+    <div className=''>
       <Header />
       <div className='absolute'>
-        <img src={bg} alt='bg'></img>
+        <img className='' src={LOGIN_BG} alt='bg'></img>
       </div>
 
-      <form className='px-10 py-12 w-3/12 absolute bg-black my-36 mx-auto right-0 left-0 bg-opacity-70 rounded-lg' onClick={(e) => { e.preventDefault() }}>
+      <form className='px-10 py-12 w-3/12 absolute bg-indigo-950 my-36 mx-auto right-0 left-0 bg-opacity-80 rounded-xl' onClick={(e) => { e.preventDefault() }}>
 
         <h1 className='font-bold my-3 text-3xl p-2 text-white'> {signInForm ? "Sign In" : "Sign Up"}</h1>
 
         {!signInForm &&
-          <input ref={fullName} className='p-2 m-2 w-full bg-gray-700' type='text' placeholder='Fullname'></input>}
+          <input ref={fullName} className='p-2 m-2 w-full bg-gray-700 bg-opacity-60' type='text' placeholder='Fullname'></input>}
 
-        <input className='p-2 m-2 my-3 w-full bg-gray-700' ref={email} type='email' placeholder='Email'></input>
-        <input className='p-2 m-2 my-3 w-full bg-gray-700' ref={password} type='password' placeholder='Password'></input>
+        <input className='p-2 m-2 my-3 w-full bg-gray-700 bg-opacity-60' ref={email} type='email' placeholder='Email'></input>
+        <input className='p-2 m-2 my-3 w-full bg-gray-700 bg-opacity-60' ref={password} type='password' placeholder='Password'></input>
 
-        <button className='p-2 mx-2 my-3 bg-red-700 rounded-md font-medium text-white' onClick={handleValidation}>
+        <button className='p-2 mx-2 my-3 bg-blue-900 rounded-md font-medium text-white' onClick={handleValidation}>
           {signInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className='mx-2 m-3 text-red-600'>{errMessage}</p>
