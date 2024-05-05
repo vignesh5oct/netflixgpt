@@ -6,23 +6,35 @@ import useGetNowPlayingMovies from '../hooks/useGetNowPlayingMovies'
 import useGetPopularMovies from '../hooks/useGetPopularMovies'
 import useGetTopRatedMovies from '../hooks/useGetTopRatedMovies'
 import useGetUpcomingMovies from '../hooks/useGetUpcomingMovies'
+import SearchButton from './SearchButton'
+import { useSelector } from 'react-redux'
 
 
 const Browse = () => {
+
+  const showSearch = useSelector(store => store?.functionality?.showSearch)
 
   useGetNowPlayingMovies();
   useGetPopularMovies();
   useGetTopRatedMovies();
   useGetUpcomingMovies();
 
+
+
+
   return (
 
     <div>
       <Header />
-      <div>
-        <MainContainer />
-        <SecondContainer />
-      </div>
+
+      {showSearch ? <SearchButton /> :
+        <div>
+          <MainContainer />
+          <SecondContainer />
+        </div>
+
+      }
+
     </div>
 
 

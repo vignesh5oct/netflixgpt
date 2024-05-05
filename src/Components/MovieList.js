@@ -1,9 +1,8 @@
 import React from 'react'
 import MovieCard from './MovieCard';
+import { Link } from 'react-router-dom';
 
 const MovieList = ({ title, movies }) => {
-
-   // console.log(movies[0]);
 
 
    return (
@@ -15,7 +14,7 @@ const MovieList = ({ title, movies }) => {
                {/* <MovieCard poster={movies[0].poster_path} /> */}
 
                {movies?.map((movie) => (
-                  <MovieCard key={movie.id} poster={movie.poster_path} />
+                  <Link><MovieCard key={movie.id} poster={movie.poster_path} /></Link>
 
                ))}
             </div>
