@@ -1,162 +1,119 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../utils/firebase';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { addUser, removeUser } from '../utils/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { DISNEY_LOGO, DISNEY_USER, logo } from '../utils/constants';
-import { HiHome, HiMagnifyingGlass, HiStar, HiPlayCircle, HiTv } from 'react-icons/hi2';
-import { HiPlus, HiDotsVertical } from 'react-icons/hi';
-import HeaderList from './HeaderList';
-import { toggleMenu, toggleShowSearch } from '../utils/functionalitySlice'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+import logo from "../img/logo.png";
+import user_icon from "../img/user.jpg";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
+import dropdown from "../img/arrowdown.svg";
+import yellow from "../img/yellow.jpg";
+import {
+  FaPen,
+  FaFileExport,
+  FaUserAstronaut,
+  FaQuestionCircle,
+  FaSearch,
+  FaHome,
+} from "react-icons/fa";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
-
-  const [toggleDottedMenu, setToggleDottedMenu] = useState(true);
-
-  const menu = [
-    {
-      name: "HOME",
-      url: "/browse",
-      icon: HiHome
-    },
-    {
-      name: "SEARCH",
-      url: "/browse/search",
-      icon: HiMagnifyingGlass
-    },
-    /*
-    {
-      name: "WATCHLIST",
-      url: "/browse/watchlist",
-      icon: HiPlus
-    },
-    {
-      name: "ORIGINALS",
-      url: "/browse/originals",
-      icon: HiStar
-    },
-    {
-      name: "MOVIES",
-      url: "/browse/movies",
-      icon: HiPlayCircle
-    },
-    {
-      name: "SERIES",
-      url: "/browse/series",
-      icon: HiTv
-    },*/
-  ]
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const dipatch = useDispatch();
-
   const user = useSelector((store) => store.user);
+  const [toggle, setToggle] = useState(false);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const handleSignOut = () => {
-    signOut(auth).then(() => {
-    }).catch((error) => {
-    });
+    signOut(auth)
+      .then(() => {})
+      .catch((error) => {
+        navigate("/error");
+      });
+  };
 
-  }
+  const toggleDropdown = () => {
+    setToggle(!toggle);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
-        dipatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
         navigate("/browse");
       } else {
-        dipatch(removeUser());
+        // User is signed out
+        dispatch(removeUser());
         navigate("/");
       }
     });
-    return (() => unsubscribe());
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
 
-  // const handleSearchClick = () => {
-  //   dipatch(toggleShowSearch());
-  // }
-  const handleSearchClick = (url) => {
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
-    console.log(dipatch(toggleMenu(url)))
-    dipatch(toggleMenu(url));
-    dipatch(toggleShowSearch())
-  }
   return (
-
-    <div className=' '>
-
-      {/* <img className='absolute w-48 px-3 py-16 z-10 cursor-pointer'
-        onClick={() => { navigate("/") }}
-        src={logo}
-        alt='logo'></img>
-      {user &&
-        <div>
-
-          <div className='absolute flex m-10 py-7 z-10'>
-            <h1 className='text-white'>Home</h1>
-            <img className='w-10 mx-4' src={user.photoURL} alt='userlogo'></img>
-            <h1 className='cursor-pointer font-semibold text-white' onClick={handleSignOut}>Sign Out</h1>
-          </div>
-        </div>} */}
-      <div className='flex justify-between items-center'>
-
-        <div className='flex gap-5'>
-          {/* <img className='absolute w-36 px-3 py-3 z-10 cursor-pointer'
-            onClick={() => { navigate("/") }}
-            src={DISNEY_LOGO}
-            alt='logo'></img> */}
-          {user && <img src={DISNEY_LOGO} alt='disneylogo' className='w-[80px] md:w-[115px] object-cover'></img>}
-          {user && <h2><Link to={"/"}>Home</Link></h2>}
+    <div className=" absolute w-full contrast-200 z-10 h-20 md:h-24 flex  justify-between bg-gradient-to-b from-black select-none">
+      <img className=" w-30 md:w-48 -mt-5 -ml-[24px] md:-mt-1 mx-auto md:mx-0 -mr-[200px] "src={LOGO} alt="Movieflix-logo" />
+      {/* {user && (
+        <div className="flex">
+          <img className="w-14 h-14 mt-6" alt="user_icon" src={user_icon} />
+          <button className="text-white mb-8 " onClick={handleSignOut}>
+            (Sign Out)
+          </button>
         </div>
-
-        {user &&
-          <div className='hidden md:flex gap-10 text-white'>
-            <h2><Link to={"/"}>Search</Link></h2>
-            {/* {menu.map((item) => (
-              <HeaderList key={item.name} url={item.url} name={item.name} Icon={item.icon} />
-            ))} */}
-          </div>
-        }
-        {/* For Mobile Screen */}
-        {user &&
-          <div className='flex gap-8 md:hidden'>
-            {menu.map((item, index) => index < 3 && (
-              <HeaderList key={item.name} Icon={item.icon} />
-            ))}
-          </div>
-        }
-        {user &&
-          <div onClick={() => { setToggleDottedMenu(!toggleDottedMenu) }} className='md:hidden'>
-            <HeaderList name={""} Icon={HiDotsVertical} />
-            {toggleDottedMenu &&
-              <div className='absolute mt-3 bg-[#121212] border-[1px] border-gray-700 p-3 px-3 py-4'>
-                {menu.map((item, index) => index > 2 && (
-                  // <HeaderList key={item.name} name={item.name} Icon={item.icon} />
-                  <h2><Link to={"/"}>{item.name}</Link></h2>
-
+      )}
+       */}
+      {user && (
+        <div className="md:-mt-0">
+          <div className="flex ml-36 ">
+            {showGptSearch && (
+              <select
+                className="hidden md:inline-block  p-2 -ml-20 text-sm   mr-3 mt-4 mb-3 rounded-lg  bg-slate-600 text-white"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LANGUAGES.map((language) => (
+                  <option key={language.identifier} value={language.identifier}>
+                    {language.name}
+                  </option>
                 ))}
+              </select>
+            )}
+            <button
+              onClick={handleGptSearchClick}
+              className="bg-purple-800 text-white md: text-normal m-3 md:pb-3 text-sm rounded-lg mt-4 mr-3 flex"
+            >
+              {showGptSearch?<FaHome className="md:mt-3 mt-1 mb-1 md:mb-0 md:ml-2 ml-1.5" /> : <FaSearch className="md:mt-3 mt-1 mb-1 md:mb-0 md:ml-2 ml-1.5"/>}
+              <p className="md:mt-1.5 flex m-auto justify-center md:flex-none md:ml-2 ml-1 md:mr-2 mr-1.5">{showGptSearch? "Homepage" : "GPT Search"}</p>
+            </button>
+            <div className=" text-white font-bold py-5 rounded-md mx-2">
+                <button onClick={handleSignOut}>Sign Out</button>
               </div>
-            }
+
           </div>
-        }
-
-        {/* USER LOGIC */}
-
-        <div className='flex items-center'>
-          {user &&
-            <img className='w-[50px] rounded-full' src={DISNEY_USER} alt='user_logo' ></img>}
-          {user &&
-            <h1 className='p-2 cursor-pointer font-semibold text-white' onClick={handleSignOut}>Sign Out</h1>
-          }
+          
         </div>
-
-      </div>
+      )}
     </div>
+  );
+};
 
-  )
-}
-
-export default Header
+export default Header;

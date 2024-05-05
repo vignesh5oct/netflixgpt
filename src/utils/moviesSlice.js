@@ -1,34 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const moviesSlice = createSlice({
-    name: "movies",
+    name:"movies",
     initialState: {
         nowPlayingMovies: null,
-        videoTrailer: null,
-        popularMovie: null,
-        topRatedMovie: null,
-        upcomingMovie: null,
+        trailerVideo: null,
     },
     reducers: {
-        addNowPlayingMovies: (state, action) => {
+        addNowPlayingMovies : (state, action)=>{
             state.nowPlayingMovies = action.payload;
         },
-        addVideoTrailer: (state, action) => {
-            state.videoTrailer = action.payload;
+        addPopularMovies : (state, action)=>{
+            state.nowPopularMovies = action.payload;
         },
-        addPopularMovie: (state, action) => {
-            state.popularMovie = action.payload;
+        addUpcomingMovies : (state, action)=>{
+            state.nowUpcomingMovies = action.payload;
         },
-        addTopRatedMovies: (state, action) => {
-            state.topRatedMovie = action.payload;
+        addTopRatedMovies : (state, action)=>{
+            state.nowTopRatedMovies = action.payload;
         },
-        addUpcomingMovies: (state, action) => {
-            state.upcomingMovie = action.payload;
+        addTVSeries : (state, action)=>{
+            state.nowTVSeries = action.payload;
+        },
+        addTrailerVideo: (state,action)=>{
+            state.trailerVideo = action.payload;
+        },
+        addTrailer: (state,action)=>{
+            state.trailer = action.payload;
+        },
+        addMovieDetail:(state,action)=>{
+            state.movieDetail = action.payload;
+        },
+        addCast:(state,action)=>{
+            state.castDetail = action.payload;
         }
-    },
+        
+    }
 });
 
+export const {addNowPlayingMovies, addTrailerVideo, addPopularMovies, addUpcomingMovies, addTopRatedMovies, addTVSeries, addTrailer, addMovieDetail, addCast} = moviesSlice.actions;
 
-export const { addNowPlayingMovies, addVideoTrailer, addPopularMovie, addTopRatedMovies, addUpcomingMovies } = moviesSlice.actions;
 export default moviesSlice.reducer;
-
