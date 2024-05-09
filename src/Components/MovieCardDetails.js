@@ -1,13 +1,18 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import useMovieDetails from '../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import VideoTitle from './VideoTitle';
+import useCastDetails from '../hooks/useCastDetails';
 import MoreInfo from './MoreInfo';
 import VideoCardBackground from './VideoCardBackground';
+import MainShimmer from './ShimmerUI/MainShimmer';
 
 const MovieCardDetails = () => {
     const { resId } = useParams();
-    
+    const movieInfo = useMovieDetails(resId);
+    const castInfo = useCastDetails(resId);
+
     const movie = useSelector(store => store?.movies?.movieDetail);
     
 
@@ -18,6 +23,7 @@ const MovieCardDetails = () => {
     console.log(original_title,overview);
 
     
+
     return (
         <div className='-my-32'>
             <VideoTitle resId={id} title={original_title} overview={overview} />
