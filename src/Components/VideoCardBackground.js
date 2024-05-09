@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import useMovieTrailer from "../hooks/useMovieTrailer";
 import { API_OPTIONS } from "../utils/constants";
+import useMovieCardTrailer from "../hooks/useMovieCardTrailer";
 import VideoBackgroundShimmer from "./ShimmerUI/VideoBackgroundShimmer";
 
-const VideoBackground = ({ movieId }) => {
-    const trailerInfo = useMovieTrailer(movieId);
+const VideoCardBackground = ({ movieId }) => {
 
-    const trailerVideo = useSelector(store => store.movies?.trailerVideo);
+    const trailerInfo = useMovieCardTrailer(movieId);
+    const trailerVideo = useSelector(store => store.movies?.trailerCardVideo);
+    console.log(trailerVideo && true);
+
 
     const getWatchData = async () => {
         const data = await fetch("https://api.themoviedb.org/3/movie/" + movieId, API_OPTIONS);
@@ -15,11 +17,10 @@ const VideoBackground = ({ movieId }) => {
     };
 
     useEffect(() => {
-        getWatchData();
+        !trailerInfo && getWatchData();
     })
     if (trailerInfo === null)
-        return null
-    
+        return <VideoBackgroundShimmer/>
     return (
         <div>
             <iframe
@@ -32,4 +33,4 @@ const VideoBackground = ({ movieId }) => {
     );
 };
 
-export default VideoBackground;
+export default VideoCardBackground;

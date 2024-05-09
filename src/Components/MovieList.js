@@ -16,14 +16,7 @@ const MovieList = ({ title, movies }) => {
                 <MovieCard posterPath={movie?.poster_path} />
               </Link>)
           }
-
-
-          {/* <MovieCard posterPath={movies[0]?.posterPath}/> */}
-
-         
-          {/* {videos?.map(video => <Link  key={video.id} to={"/watch?v="+ video.id}><Videocard info={video}/></Link> )} */}
         </div>
-
       </div>
     </div>
   );

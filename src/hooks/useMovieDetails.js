@@ -7,6 +7,7 @@ import { addMovieDetail } from "../utils/moviesSlice";
 
 const useMovieDetails = (movieId) => {
     const dispatch = useDispatch();
+    
     const getMovieDetails = async () => {
         const data = await fetch("https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US", API_OPTIONS);
         const json = await data.json();

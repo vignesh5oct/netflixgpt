@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { addTrailerVideo } from "../utils/moviesSlice";
+import { addTrailerCardVideo } from "../utils/moviesSlice";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 
-const useMovieTrailer = (movieId) =>{
+const useMovieCardTrailer = (movieId) =>{
     const dispatch = useDispatch();
 
     const getMovieVideos = async () => {
@@ -15,13 +15,13 @@ const useMovieTrailer = (movieId) =>{
   
       const filterData = json.results.filter((video) => video.type === "Trailer");
       const trailer = filterData.length ? filterData[0] : json.results[0];
-      dispatch(addTrailerVideo(trailer));
+      dispatch(addTrailerCardVideo(trailer));
       console.log("check",trailer);
     };
   
     useEffect(() => {
       getMovieVideos();
-    }, []);
+    }, [movieId]);
 };
 
-export default useMovieTrailer;
+export default useMovieCardTrailer;

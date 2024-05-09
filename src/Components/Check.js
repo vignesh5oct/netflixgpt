@@ -62,8 +62,6 @@ const Check = () => {
   const writer = Cast?.crew.filter((f) => f.job === "Screenplay" || f.job === "Story" || f.job === "Writer")
   console.log("writer", writer);
 
-  // if(!trailerData?.key) return !<iframe></iframe>;
-
   return (
 
     <>

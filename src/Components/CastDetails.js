@@ -1,15 +1,15 @@
 import React from 'react'
 import { IMG_CDN_URL } from '../utils/constants'
 
-const CardDetails = ({name, posterPath }) => {
+const CastDetails = ({name, posterPath }) => {
   if (!posterPath) return null;
   // console.log(posterPath)
   return (
-    <div className='p-2 w-'>
-      <h1 className='text-xl'>{name}</h1>
-      <img className='' alt="Movie-card" src={IMG_CDN_URL + posterPath} />
+    <div className='w-36 md:w-48 pr-0 hover:-translate-y-0.5'>
+      <h1>{name}</h1>
+      <img className='pr-4' alt="Movie-card" src={IMG_CDN_URL + posterPath} />
     </div>
   )
 }
 
-export default CardDetails;
+export default CastDetails;
