@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 import { API_OPTIONS } from "../utils/constants";
-import VideoBackgroundShimmer from "./ShimmerUI/VideoBackgroundShimmer";
 
 const VideoBackground = ({ movieId }) => {
     const trailerInfo = useMovieTrailer(movieId);

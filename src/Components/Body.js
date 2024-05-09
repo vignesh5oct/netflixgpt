@@ -2,7 +2,6 @@ import React from "react";
 import Login from "./Login";
 import Browse from "./Browse";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Check from "./Check";
 import MovieCardDetails from "./MovieCardDetails";
 import MoreInfo from "./MoreInfo";
 

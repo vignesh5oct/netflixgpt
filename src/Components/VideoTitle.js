@@ -2,7 +2,6 @@ import React from 'react'
 import { FaPlay, FaInfoCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useCastDetails from '../hooks/useCastDetails';
-import VideoTitleShimmer from './ShimmerUI/VideoTitleShimmer';
 
 const VideoTitle = ({ resId, title, overview }) => {
 
@@ -10,7 +9,7 @@ const VideoTitle = ({ resId, title, overview }) => {
 
   // console.log(resId);
   if (castInfo === null)
-    return <VideoTitleShimmer/>
+    return null;
 
   return (
     <div className='mt-28 md:mt-0 w-full aspect-video pt-[14%] px-6 md:px-12 absolute text-white md:bg-gradient-to-r from-black'>

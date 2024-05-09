@@ -20,7 +20,7 @@ const VideoCardBackground = ({ movieId }) => {
         !trailerInfo && getWatchData();
     })
     if (trailerInfo === null)
-        return <VideoBackgroundShimmer/>
+        return null;
     return (
         <div>
             <iframe
