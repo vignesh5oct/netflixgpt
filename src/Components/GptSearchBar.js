@@ -18,7 +18,7 @@ const GptSearchBar = () => {
   }
 
   return (
-    <div className="sm:w-[50%] md:pt-[5%] mb-3 w-[90%] mx-[auto]">
+    <div className="sm:w-[50%] pt-[15%] mb-3 w-[90%] mx-[auto] sm:pt-[10%] ">
       <form className="relative mb-4 flex w-full flex-wrap items-stretch" onSubmit={(e) => e.preventDefault()}>
         <input
           ref={searchText}

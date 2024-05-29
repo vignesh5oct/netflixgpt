@@ -54,7 +54,7 @@ const Header = () => {
 
   return (
     <div className=" absolute w-full contrast-200 z-10 h-20 md:h-24 flex  justify-between bg-gradient-to-b from-black select-none">
-      <img className=" w-30 md:w-48 -mt-5 -ml-[24px] md:-mt-1 mx-auto md:mx-0 -mr-[200px] " src={LOGO} alt="Movieflix-logo" />
+      <img className=" w-0 md:w-48 -mt-5 -ml-[24px] md:-mt-1 mx-auto md:mx-0 -mr-[200px] " src={LOGO} alt="Movieflix-logo" />
 
       {user && (
         <div className="md:-mt-0">
@@ -74,13 +74,13 @@ const Header = () => {
             {/* search */}
             <button
               onClick={handleGptSearchClick}
-              className="bg-purple-800 text-white md: text-normal m-3 md:pb-3 text-sm rounded-lg mt-4 mr-3 flex items-center"
+              className=" bg-purple-800 text-white md: text-normal m-3 md:pb-3 text-sm rounded-lg mt-4 mr-3 flex items-center"
             >
               {showGptSearch ? <FaHome className="md:mt-3 mt-1 mb-1 md:mb-0 md:ml-2 ml-1.5 items-center" /> :
                 <FaSearch className="md:mt-3 mt-1 mb-1 md:mb-0 md:ml-2 ml-1.5" />}
               <p className="inline-block rounded px-5  pt-2.5 font-medium uppercase">{showGptSearch ? "Homepage" : "Search"}</p>
             </button>
-            <div className="text-white font-bold py-5 rounded-md mx-2">
+            <div className="px-8 text-white font-bold py-5 rounded-md mx-2 md:px-16">
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           </div>
