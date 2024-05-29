@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import useMovieCardTrailer from "../hooks/useMovieCardTrailer";
-import VideoBackgroundShimmer from "./ShimmerUI/VideoBackgroundShimmer";
 
 const VideoCardBackground = ({ movieId }) => {
 
