@@ -70,3 +70,57 @@ from .views import update_center_item
 urlpatterns = [
     path('update-center-item/', update_center_item, name='update_center_item'),
 ]
+
+
+$(document).ready(function () {
+    var owl = $(".owl-carousel");
+
+    // Get current date from the hidden input (passed from Django)
+    var currentDate = $("#current-date").val(); // Example: "2025-03-12"
+    var currentTime = new Date(); // Get current time
+
+    // Initialize Owl Carousel
+    owl.owlCarousel({
+        loop: false,
+        items: 1,
+        onInitialized: function () {
+            appendTimeSlots(currentDate);
+            hidePastTimeSlots();
+            owl.trigger("refresh.owl.carousel"); // Refresh after updating items
+        }
+    });
+
+    // Function to append time slots dynamically
+    function appendTimeSlots(date) {
+        let startHour = 10; // 10 AM
+        let endHour = 22;   // 10 PM
+
+        for (let hour = startHour; hour <= endHour; hour++) {
+            let formattedTime = formatTime(hour);
+            let slotTime = `${date} ${hour}:00`;
+
+            $(".owl-carousel").trigger("add.owl.carousel", [
+                `<div class="item time-slot" data-time="${slotTime}">${formattedTime}</div>`
+            ]);
+        }
+    }
+
+    // Function to hide past time slots
+    function hidePastTimeSlots() {
+        $(".time-slot").each(function () {
+            let slotTimeStr = $(this).data("time"); // Example: "2025-03-12 14:00"
+            let slotTime = new Date(slotTimeStr); // Convert to Date object
+
+            if (slotTime < currentTime) {
+                $(this).hide(); // Hide past time slots
+            }
+        });
+    }
+
+    // Function to format time in AM/PM
+    function formatTime(hour) {
+        let period = hour >= 12 ? "PM" : "AM";
+        let displayHour = hour > 12 ? hour - 12 : hour;
+        return `${displayHour}:00 ${period}`;
+    }
+});
