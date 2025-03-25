@@ -1,126 +1,30 @@
-var owl = $(".owl-carousel");
+Certainly! Here's a detailed overview of AI Dungeon:
 
-// Initialize Owl Carousel
-owl.owlCarousel({
-    loop: true,
-    items: 1,
-    onInitialized: function(event) { // Get center item on page load
-        getCurrentItem(event);
-    }
-});
+Game Title: AI Dungeon
 
-// Event listener for when the carousel changes
-owl.on('changed.owl.carousel', function(event) {
-    getCurrentItem(event);
-});
+Company Name: Latitude
 
-// Function to get the current center item's ID
-function getCurrentItem(event) {
-    var current = event.item.index;
-    var data = $(event.target).find(".owl-item").eq(current).find("button").attr('id');
+Technology Stack Related with Python: AI Dungeon utilizes Python for various aspects of its development, including backend services and AI model integration. The game initially employed OpenAI's GPT-2 model and later transitioned to GPT-3 for text generation. 
 
-    console.log('Current Item ID:', data);
+Pricing: AI Dungeon offers both free and premium subscription models. The free version provides access to basic features, while the premium subscription unlocks advanced functionalities and the more sophisticated AI model known as "Dragon." 
 
-    if (data) {
-        sendValueToBackend(data);
-    }
-}
+Number of Users: As of early 2020, AI Dungeon had over 1.5 million users and has continued to grow since then. 
 
-// Function to send the value to Django using AJAX
-function sendValueToBackend(value) {
-    $.ajax({
-        url: "/update-center-item/",
-        type: "POST",
-        headers: { "X-CSRFToken": getCSRFToken() }, // CSRF protection
-        data: JSON.stringify({ center_value: value }),
-        contentType: "application/json",
-        success: function(response) {
-            console.log("Response from backend:", response);
-        },
-        error: function(error) {
-            console.error("Error:", error);
-        }
-    });
-}
+Reference Links:
 
-// Function to get CSRF token for Django AJAX requests
-function getCSRFToken() {
-    return document.cookie.split('; ')
-        .find(row => row.startsWith('csrftoken='))
-        ?.split('=')[1];
-}
+Official Website: https://aidungeon.com/
+
+Wikipedia: https://en.wikipedia.org/wiki/AI_Dungeon
 
 
+Key Functionality Used: AI Dungeon offers an interactive text-based adventure experience where players can input any action or dialogue, and the AI generates dynamic and contextually relevant story progressions. This open-ended gameplay allows for limitless storytelling possibilities. 
 
-from django.http import JsonResponse
-import json
+Key Technologies Used: The game leverages advanced natural language processing models, specifically OpenAI's GPT-2 and GPT-3, to generate coherent and contextually appropriate narratives based on user input. 
 
-def update_center_item(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        center_value = data.get("center_value")
-        print("Received center item:", center_value)
-        return JsonResponse({"message": "Center item updated", "center_value": center_value})
-    return JsonResponse({"error": "Invalid request"}, status=400)
+Detailed Working of AI Concepts: AI Dungeon employs deep learning models trained on extensive text datasets to predict and generate text sequences. When a player inputs an action or dialogue, the AI processes this input and generates a continuation of the story by predicting the most probable subsequent text. This process involves understanding context, maintaining coherence, and dynamically adapting to the player's choices to create a seamless narrative experience. 
 
+Which Python Engine Used: While specific details about the Python engine used in AI Dungeon are not publicly disclosed, the game integrates Python-based frameworks and libraries to interface with the AI models and manage backend services.
 
-from django.urls import path
-from .views import update_center_item
+AI Dungeon stands as a pioneering example of integrating AI-driven narrative generation within interactive gaming, offering players unparalleled freedom in storytelling and adventure creation.
 
-urlpatterns = [
-    path('update-center-item/', update_center_item, name='update_center_item'),
-]
-
-
-$(document).ready(function () {
-    var owl = $(".owl-carousel");
-
-    // Get current date from the hidden input (passed from Django)
-    var currentDate = $("#current-date").val(); // Example: "2025-03-12"
-    var currentTime = new Date(); // Get current time
-
-    // Initialize Owl Carousel
-    owl.owlCarousel({
-        loop: false,
-        items: 1,
-        onInitialized: function () {
-            appendTimeSlots(currentDate);
-            hidePastTimeSlots();
-            owl.trigger("refresh.owl.carousel"); // Refresh after updating items
-        }
-    });
-
-    // Function to append time slots dynamically
-    function appendTimeSlots(date) {
-        let startHour = 10; // 10 AM
-        let endHour = 22;   // 10 PM
-
-        for (let hour = startHour; hour <= endHour; hour++) {
-            let formattedTime = formatTime(hour);
-            let slotTime = `${date} ${hour}:00`;
-
-            $(".owl-carousel").trigger("add.owl.carousel", [
-                `<div class="item time-slot" data-time="${slotTime}">${formattedTime}</div>`
-            ]);
-        }
-    }
-
-    // Function to hide past time slots
-    function hidePastTimeSlots() {
-        $(".time-slot").each(function () {
-            let slotTimeStr = $(this).data("time"); // Example: "2025-03-12 14:00"
-            let slotTime = new Date(slotTimeStr); // Convert to Date object
-
-            if (slotTime < currentTime) {
-                $(this).hide(); // Hide past time slots
-            }
-        });
-    }
-
-    // Function to format time in AM/PM
-    function formatTime(hour) {
-        let period = hour >= 12 ? "PM" : "AM";
-        let displayHour = hour > 12 ? hour - 12 : hour;
-        return `${displayHour}:00 ${period}`;
-    }
-});
+########
