@@ -28,3 +28,37 @@ Which Python Engine Used: While specific details about the Python engine used in
 AI Dungeon stands as a pioneering example of integrating AI-driven narrative generation within interactive gaming, offering players unparalleled freedom in storytelling and adventure creation.
 
 ########
+
+
+Certainly! Here's a detailed overview of Middle-earth: Shadow of Mordor:
+
+Game Title: Middle-earth: Shadow of Mordor
+
+Company Name: Monolith Productions
+
+Technology Stack Related with Python: While the primary development of Middle-earth: Shadow of Mordor utilized Monolith's proprietary LithTech engine, there is no publicly available information indicating the use of Python in its technology stack.
+
+Pricing: The game's pricing has varied since its release in 2014. Initially launched at a standard AAA title price, it has since been available at discounted rates during sales on platforms like Steam, PlayStation Store, and Xbox Marketplace.
+
+Number of Users: Specific user numbers are not publicly disclosed. However, the game received critical acclaim and achieved commercial success, indicating a substantial player base.
+
+Reference Links:
+
+Official Website: https://www.shadowofmordor.com/
+
+Wikipedia: https://en.wikipedia.org/wiki/Middle-earth:_Shadow_of_Mordor
+
+
+Key Functionality Used: The game introduces the innovative "Nemesis System," which dynamically generates unique enemies that remember past encounters with the player, leading to personalized interactions and evolving adversaries throughout the gameplay.
+
+Key Technologies Used: Middle-earth: Shadow of Mordor was developed using Monolith's proprietary LithTech engine.
+
+Detailed Working of AI Concepts: The Nemesis System employs procedural generation to create unique enemy characters, each with distinct traits, ranks, and memories of interactions with the player. This system allows enemies to adapt based on previous encounters, fostering emergent storytelling and personalized gameplay experiences. For instance, an enemy who survives an encounter may recall the player's tactics in future battles, leading to dynamic and evolving adversarial relationships. 
+
+Which Python Engine Used: There is no publicly available information indicating the use of a Python engine in the development of Middle-earth: Shadow of Mordor.
+
+Middle-earth: Shadow of Mordor stands out for its innovative use of AI through the Nemesis System, offering players a unique and personalized gaming experience.
+
+For a deeper understanding of how the Nemesis System creates dynamic stories, you might find the following video insightful:
+
+#########
