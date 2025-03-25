@@ -62,3 +62,42 @@ Middle-earth: Shadow of Mordor stands out for its innovative use of AI through t
 For a deeper understanding of how the Nemesis System creates dynamic stories, you might find the following video insightful:
 
 #########
+
+Certainly! Here's a detailed overview of Alien: Isolation:
+
+Game Title: Alien: Isolation
+
+Company Name: Creative Assembly
+
+Technology Stack Related with Python: While the primary development of Alien: Isolation utilized proprietary game engines and tools, there is no publicly available information indicating the use of Python in its technology stack.
+
+Pricing: The game's pricing has varied since its release in 2014. Initially launched at a standard AAA title price, it has since been available at discounted rates during sales on platforms like Steam, PlayStation Store, and Xbox Marketplace.
+
+Number of Users: Specific user numbers are not publicly disclosed. However, the game received critical acclaim and achieved commercial success, indicating a substantial player base.
+
+Reference Links:
+
+Official Website: https://www.alienisolation.com/
+
+Wikipedia: https://en.wikipedia.org/wiki/Alien:_Isolation
+
+
+Key Functionality Used: Alien: Isolation is renowned for its intense survival horror experience, where players must evade a relentless Xenomorph using stealth and strategy. The game's dynamic AI system ensures that the alien adapts to player behavior, creating a tense and unpredictable gameplay environment.
+
+Key Technologies Used: The game was developed using Creative Assembly's proprietary engine, tailored to deliver high-fidelity graphics and complex AI behaviors.
+
+Detailed Working of AI Concepts: Alien: Isolation employs a sophisticated AI architecture to control the Xenomorph, featuring a "dual-brain" system:
+
+Director AI: This overarching system monitors the player's actions and location, guiding the Xenomorph towards areas of interest to maintain tension and unpredictability.
+
+Xenomorph AI: Operating independently, this AI governs the alien's sensory inputs and behaviors, allowing it to hunt the player using sight, sound, and environmental cues. The Xenomorph can learn from player actions, adapting its strategies over time to counter repetitive tactics.
+
+
+This dual-layered approach creates an intelligent and adaptive adversary, enhancing the horror experience by ensuring the alien remains an ever-present threat. 
+
+Which Python Engine Used: There is no publicly available information indicating the use of a Python engine in the development of Alien: Isolation.
+
+Alien: Isolation stands out for its innovative AI design, offering players a uniquely challenging and immersive survival horror experience.
+
+For a deeper understanding of the game's AI mechanics, you might find the following video insightful:
+
